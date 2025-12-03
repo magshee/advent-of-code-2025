@@ -2,3 +2,6 @@ product: jvm/app
 
 dependencies:
   - org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0
+
+test-dependencies:
+  - org.junit.jupiter:junit-jupiter-params:5.14.0
