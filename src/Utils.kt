@@ -21,3 +21,12 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  * The cleaner shorthand for printing output.
  */
 fun Any?.println() = println(this)
+
+/**
+ * Calculates the power of a long number without having to use floating point numbers
+ */
+fun Long.pow(exp: Int): Long {
+    var result = 1L
+    repeat(exp) { result *= this }
+    return result
+}
