@@ -12,6 +12,8 @@ fun readGrid(name: String) = Path("src/$name.txt").readText().trim().lines().map
 
 fun readLine(name: String) = Path("src/$name.txt").readText().trim().split(",")
 
+fun readBlocks(name: String) = Path("src/$name.txt").readText().trim().split("\n\n").map { it.lines() }
+
 /**
  * Converts string to md5 hash.
  */
@@ -31,4 +33,22 @@ fun Long.pow(exp: Int): Long {
     var result = 1L
     repeat(exp) { result *= this }
     return result
+}
+
+fun String.toRange(delimiter: String): LongRange {
+    val split = this.split(delimiter)
+    require(split.size >= 2) { "str must contain two integers separated by ;" }
+
+    val (a, b) = split
+
+    return try {
+        a.toLong()..b.toLong()
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException("str values '$a' and/or '$b' are not integers", e)
+    }
+}
+
+fun Long.isInRange(range: LongRange): Boolean {
+    if (this >= range.first && this <= range.last) return true
+    return false
 }
